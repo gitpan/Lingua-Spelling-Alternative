@@ -7,7 +7,7 @@ use strict;
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
 use Exporter;
-$VERSION = '0.01';
+$VERSION = '0.02';
 @ISA = ('Exporter');
 
 #@EXPORT = qw();
@@ -179,17 +179,18 @@ Alternative.pm - alternative spelling of a given word in a given language
 
 =head1 SYNOPSIS
 
-  use Lingua::Spelling:Alternative;
+  use Lingua::Spelling::Alternative;
 
-  my $en = new Alternative;
-  $en->load_affix('/usr/lib/ispell/english.aff') or die $!;
-  print $en->alternatives("cars");
+  my $en = new Lingua::Spelling::Alternative;
+  $en->load_affix('/usr/lib/ispell/default.aff') or die $!;
+  print join(" ",$en->alternatives("cars")),"\n";
 
 =head1 DESCRIPTION
 
-This module is designed to return all valid forms of a given word
+This module is designed to return all forms of a given word
 (for example when you want to see all possible forms of some word
-entered in search engine)
+entered in search engine) which can be generated using affix file (from
+ispell) or using findaffix output file (also part of ispell package)
 
 =head1 PUBLIC METHODS
 
@@ -198,7 +199,7 @@ entered in search engine)
 =item new
 
 The new() constructor (without parameters) create container for new language.
-Only parametar it supports is DEBUG which turns on (some) debugging output.
+Only parameter it supports is DEBUG which turns on (some) debugging output.
 
 =item load_affix
 
@@ -208,20 +209,22 @@ Function load_affix() loads ispell's affix file for later usage.
 
 This function loads output of findaffix program from ispell package.
 This is better idea (if you are creating affix file for particular language
-yourself or you can get your hands on one) because affix file from ispel
+yourself or you can get your hands on one) because affix file from ispell
 is limited to 26 entries (because each entry is denoted by single character).
 
 =item alternatives
 
-Function alternatives return all alternative spellings of particular
+Function alternatives return array of all alternative spellings of particular
 word(s). It will also return spelling which are not correct if there is
 rule like that in affix file.
 
 =item minimal
 
 This function returns minimal of all alternatives of a given word(s). It's
-a poor man's version of normalize (because we don't know gramatic of
+a poor man's version of normalize (because we don't know grammatic of
 particular language, just some spelling rules).
+
+=back
 
 =head1 PRIVATE METHODS
 
@@ -234,11 +237,12 @@ aspects of Alternative.pm.
 
 =head1 BUGS
 
-There are no known bugs.
+There are no known bugs. If you find any, please report it in CPAN's
+request tracker at: http://rt.cpan.org/
 
 =head1 CONTACT AND COPYRIGHT
 
-Copyright 2002 Dobrica Pavlinusic (dpavlin@rot13.org). All
+Copyright 2002-2003 Dobrica Pavlinusic (dpavlin@rot13.org). All
 rights reserved.  This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
 

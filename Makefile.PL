@@ -8,7 +8,6 @@ WriteMakefile
     ABSTRACT     => 'Produce all alternative forms of given word',
     VERSION_FROM => 'Alternative.pm',
     dist         => {
-		PREOP    => 'pod2text Alternative.pm > $(DISTVNAME)/README',
 		COMPRESS => 'gzip -9f',
 		SUFFIX   => 'gz',
 	},

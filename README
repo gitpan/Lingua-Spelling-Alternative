@@ -1,56 +1,31 @@
-NAME
-    Alternative.pm - alternative spelling of a given word in a given
-    language
+Lingua::Spelling::Alternative
+=============================
 
-SYNOPSIS
-      use Lingua::Spelling:Alternative;
+This module is designed to return all forms of a given word (for example
+when you want to see all possible forms of some word entered in search
+engine) which can be generated using affix file (from ispell) or using
+findaffix output file (also part of ispell package)
 
-      my $en = new Alternative;
-      $en->load_affix('/usr/lib/ispell/english.aff') or die $!;
-      print $en->alternatives("cars");
+INSTALLATION
 
-DESCRIPTION
-    This module is designed to return all valid forms of a given word (for
-    example when you want to see all possible forms of some word entered in
-    search engine)
+To install this module type the following:
 
-PUBLIC METHODS
-    new The new() constructor (without parameters) create container for new
-        language. Only parametar it supports is DEBUG which turns on (some)
-        debugging output.
+   perl Makefile.PL
+   make
+   make test
+   make install
 
-    load_affix
-        Function load_affix() loads ispell's affix file for later usage.
+DEPENDENCIES
 
-    load_findaffix
-        This function loads output of findaffix program from ispell package.
-        This is better idea (if you are creating affix file for particular
-        language yourself or you can get your hands on one) because affix
-        file from ispel is limited to 26 entries (because each entry is
-        denoted by single character).
+This module requires affix files for used language or output of findaffix
+program to produce alternatives
 
-    alternatives
-        Function alternatives return all alternative spellings of particular
-        word(s). It will also return spelling which are not correct if there
-        is rule like that in affix file.
+COPYRIGHT AND LICENCE
 
-    minimal
-        This function returns minimal of all alternatives of a given
-        word(s). It's a poor man's version of normalize (because we don't
-        know gramatic of particular language, just some spelling rules).
+Put the correct copyright and licence information here.
 
-PRIVATE METHODS
-        Documented as being not documented.
+Copyright (C) 2002-2003 by Dobrica Pavlinusic
 
-EXAMPLES
-        Please see the test.pl program in distribution which exercises some
-        aspects of Alternative.pm.
-
-BUGS
-        There are no known bugs.
-
-CONTACT AND COPYRIGHT
-        Copyright 2002 Dobrica Pavlinusic (dpavlin@rot13.org). All rights
-        reserved. This program is free software; you can redistribute it
-        and/or modify it under the same terms as Perl itself.
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
