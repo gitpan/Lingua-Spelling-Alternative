@@ -1,0 +1,5 @@
+MANIFEST
+Alternative.pm
+Makefile.PL
+test.pl
+findaffix.out
